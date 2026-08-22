@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🚨 CRITICAL SYSTEM BREACH 🚨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        body {
+            background-color: #000;
+            color: #ff0000;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        
+        /* লিঙ্কে ঢোকার সাথে সাথেই স্ক্রিন কাঁপানোর জন্য ম্যাজিক অ্যানিমেশন */
+        .destructive-glitch {
+            animation: screenChaos 0.1s infinite, colorAlert 0.15s infinite;
+        }
+        @keyframes screenChaos {
+            0% { transform: translate(3px, 2px) rotate(0deg); filter: contrast(1.5); }
+            20% { transform: translate(-2px, -3px) rotate(-1deg); }
+            40% { transform: translate(-4px, 0px) rotate(1deg); filter: hue-rotate(90deg); }
+            60% { transform: translate(0px, 3px) rotate(0deg); }
+            80% { transform: translate(2px, -2px) rotate(1deg); }
+            100% { transform: translate(-1px, 2px) rotate(-1deg); }
+        }
+        @keyframes colorAlert {
+            0% { background-color: #000; }
+            50% { background-color: #1a0000; }
+            100% { background-color: #000; }
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+            padding: 12px;
+        }
+
+        .alert-banner {
+            background: #ff0000;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.4rem;
+            text-align: center;
+            padding: 12px;
+            box-shadow: 0 0 25px #ff0000;
+            letter-spacing: 2px;
+        }
+
+        .terminal-stream {
+            margin-top: 15px;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #00ff00;
+            border: 1px solid #ff0000;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px;
+        }
+
+        .danger-text { color: #ff3333; font-weight: bold; }
+        .success-text { color: #33ff33; }
+        .info-text { color: #00ccff; }
+
+        .ransom-notice {
+            border: 2px dashed #ffcc00;
+            background: rgba(255, 204, 0, 0.05);
+            padding: 15px;
+            text-align: center;
+            color: #fff;
+            margin-top: 15px;
+        }
+        .timer-countdown {
+            font-size: 1.8rem;
+            color: #ffcc00;
+            font-weight: bold;
+            margin: 5px 0;
+            text-shadow: 0 0 10px #ffcc00;
+        }
+
+        .progress-box {
+            margin-top: 15px;
+            border: 1px solid #ff0000;
+            padding: 10px;
+            background: rgba(0,0,0,0.8);
+        }
+        .progress-bar-bg {
+            width: 100%;
+            border: 1px solid #ff0000;
+            height: 20px;
+            background: #110000;
+            margin-top: 5px;
+        }
+        .progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #ff0000;
+            box-shadow: 0 0 12px #ff0000;
+        }
+    </style>
+</head>
+<body class="destructive-glitch"> <!-- লোড হওয়ার সাথে সাথেই কাঁপুনি শুরু হবে -->
+
+    <div class="main-container">
+        <div class="alert-banner">☢️ FATAL MALWARE ATTACK DETECTED ☢️</div>
+        
+        <div>
+            <!-- উইন্ডো ১: স্বয়ংক্রিয় কমান্ড প্রোম্পট -->
+            <div class="terminal-stream" id="log-box"></div>
+
+            <!-- উইন্ডো ২: কাউন্টডাউন টাইমার -->
+            <div class="ransom-notice">
+                <p class="danger-text">SYSTEM HARDWARE LOCK IN PROGRESS</p>
+                <div id="timer" class="timer-countdown">00:00:30</div>
+                <p style="font-size:0.75rem; color:#ccc;">Formatting /dev/block/bootdevice/userdata...</p>
+            </div>
+
+            <!-- উইন্ডো ৩: প্রোগ্রেস বার ওয়াইপার -->
+            <div class="progress-box">
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                    <span id="wipe-target" class="info-text">Targeting: Core System Registry...</span>
+                    <span id="percent-label" class="danger-text">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="wipe-progress" class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="font-size:0.7rem; text-align:center; color:#555; padding-top: 10px;">
+            EMERGENCY OVERRIDE: BLOCKED // CVE-2026-ROOT_EXPLOIT
+        </div>
+    </div>
+
+    <script>
+        const logBox = document.getElementById('log-box');
+        const wipeProgress = document.getElementById('wipe-progress');
+        const percentLabel = document.getElementById('percent-label');
+        const wipeTarget = document.getElementById('wipe-target');
+        const timerDisplay = document.getElementById('timer');
+
+        const logs = [
+            { text: "Overriding system kernel signatures...", s: "info-text" },
+            { text: "Injecting Trojan.AndroidOS.Agent vector...", s: "danger-text" },
+            { text: "Root permissions acquired! UID=0", s: "success-text" },
+            { text: "Bypassing Google Play Protect Firewall... [DONE]", s: "success-text" },
+            { text: "Downloading target database partitions...", s: "info-text" },
+            { text: "Uploading saved contacts & photos to C2 Server...", s: "danger-text" },
+            { text: "Dumping local WhatsApp chats archive...", s: "warning-text" },
+            { text: "Disabling device power management controller...", s: "info-text" },
+            { text: "Wiping hardware firmware layer partitions...", s: "danger-text" }
+        ];
+
+        const dummyFiles = [
+            "/storage/emulated/0/DCIM/Camera/",
+            "/storage/emulated/0/WhatsApp/Media/",
+            "/storage/emulated/0/Download/Private_Key.txt",
+            "/system/priv-app/SystemUI.apk",
+            "/dev/block/by-name/userdata"
+        ];
+
+        let logIdx = 0;
+
+        // পেজ লোড হওয়ার সাথে সাথেই অটোমেটিক রান হবে
+        window.onload = function() {
+            runAutomaticAttack();
+            startTimer();
+        };
+
+        function runAutomaticAttack() {
+            if (logIdx < logs.length) {
+                let current = logs[logIdx];
+                let line = document.createElement('div');
+                line.className = current.s;
+                line.innerText = ">> " + current.text;
+                logBox.appendChild(line);
+                logBox.scrollTop = logBox.scrollHeight;
+                logIdx++;
+                setTimeout(runAutomaticAttack, 400); // অতি দ্রুত লেখাগুলো আসবে
+            } else {
+                setTimeout(startWipe, 200);
+            }
+        }
+
+        function startWipe() {
+            let p = 0;
+            let fIdx = 0;
+            let interval = setInterval(() => {
+                if (p >= 100) {
+                    clearInterval(interval);
+                    percentLabel.innerText = "OVERWRITE COMPLETE";
+                    wipeTarget.innerText = "KERNEL PANIC: DEVICE DESTROYED";
+                    document.body.style.filter = "invert(1) saturate(5)";
+                } else {
+                    p++;
+                    wipeProgress.style.width = p + '%';
+                    percentLabel.innerText = p + '%';
+                    if (p % 20 === 0) {
+                        fIdx = (fIdx + 1) % dummyFiles.length;
+                        wipeTarget.innerText = "Deleting: " + dummyFiles[fIdx];
+                    }
+                }
+            }, 50);
+        }
+
+        function startTimer() {
+            let sec = 30;
+            let t = setInterval(() => {
+                sec--;
+                if (sec <= 0) {
+                    clearInterval(t);
+                    timerDisplay.innerText = "00:00:00";
+                } else {
+                    timerDisplay.innerText = "00:00:" + (sec < 10 ? "0" + sec : sec);
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
